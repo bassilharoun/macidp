@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/layout/shop_layout.dart';
+import 'package:macidp/macidp/modules/splash_screen/splash_view.dart';
 import 'package:macidp/macidp/newscreens/fitness_app_home_screen.dart';
 import 'package:macidp/macidp/shared/bloc_observer.dart';
 import 'package:macidp/macidp/shared/network/dio_helper.dart';
@@ -18,7 +19,7 @@ void main() async{
 
 
   runApp(MyApp(
-    startWidget: FitnessAppHomeScreen(),
+    startWidget: SplashView(),
   ));
 }
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (BuildContext context) => AppCubit(),),
+        BlocProvider(create: (BuildContext context) => AppCubit()..getProducts(),),
       ],
       child: BlocConsumer<AppCubit , AppStates>(
         listener: (context , state){},

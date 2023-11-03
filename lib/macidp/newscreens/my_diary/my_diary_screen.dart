@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/newscreens/fitness_app_theme.dart';
-import 'package:macidp/macidp/newscreens/my_diary/meals_list_view.dart';
+import 'package:macidp/macidp/newscreens/my_diary/IDP_list_view.dart';
 import 'package:macidp/macidp/newscreens/my_diary/water_view.dart';
 import 'package:macidp/macidp/newscreens/ui_view/body_measurement.dart';
 import 'package:macidp/macidp/newscreens/ui_view/glass_view.dart';
@@ -64,7 +64,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'International Driving License',
+        titleTxt: 'Let\'s Order IDP Now !',
         subTxt: 'Details',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
@@ -95,7 +95,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
     );
 
     listViews.add(
-      MealsListView(
+      IDPListView(
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
                 parent: widget.animationController!,

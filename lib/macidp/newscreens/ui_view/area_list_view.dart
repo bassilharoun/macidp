@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:macidp/macidp/app_cubit/app_cubit.dart';
+import 'package:macidp/macidp/shared/colors.dart';
 
 import '../fitness_app_theme.dart';
 
@@ -17,11 +19,11 @@ class _AreaListViewState extends State<AreaListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
   List<String> areaListData = <String>[
-    'assets/fitness_app/area1.png',
-    'assets/fitness_app/area2.png',
-    'assets/fitness_app/area3.png',
-    'assets/fitness_app/area1.png',
+    'assets/images/europe.png',
+    'assets/images/yemen.png',
+    'assets/images/Egypt.png',
   ];
+  int initTriptik = 1;
 
   @override
   void initState() {
@@ -47,7 +49,7 @@ class _AreaListViewState extends State<AreaListView>
             transform: Matrix4.translationValues(
                 0.0, 30 * (1.0 - widget.mainScreenAnimation!.value), 0.0),
             child: AspectRatio(
-              aspectRatio: 1.0,
+              aspectRatio: 0.8,
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8),
                 child: GridView(
@@ -68,18 +70,32 @@ class _AreaListViewState extends State<AreaListView>
                         ),
                       );
                       animationController?.forward();
-                      return AreaView(
-                        imagepath: areaListData[index],
-                        animation: animation,
-                        animationController: animationController!,
-                      );
+                      if(index == 0 || index == 1){
+                        return AreaView(
+                          imagepath: areaListData[index],
+                          animation: animation,
+                          name: AppCubit.get(context).products[initTriptik + index].name,
+                          price: "${AppCubit.get(context).products[initTriptik + index].price}",
+                          animationController: animationController!,
+                        );
+                      }
+                      else{
+                        return AreaView(
+                          imagepath: areaListData[index],
+                          animation: animation,
+                          name: "دفتر تريبتيك مصر",
+                          price: "قريبا",
+                          animationController: animationController!,
+                        );
+                      }
+
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 24.0,
                     crossAxisSpacing: 24.0,
-                    childAspectRatio: 1.0,
+                    childAspectRatio: 0.75,
                   ),
                 ),
               ),
@@ -95,11 +111,15 @@ class AreaView extends StatelessWidget {
   const AreaView({
     Key? key,
     this.imagepath,
+    this.name,
+    this.price,
     this.animationController,
     this.animation,
   }) : super(key: key);
 
   final String? imagepath;
+  final String? name;
+  final String? price;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -136,15 +156,28 @@ class AreaView extends StatelessWidget {
                   hoverColor: Colors.transparent,
                   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                   splashColor: FitnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
-                  onTap: () {},
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 16, left: 16, right: 16),
-                        child: Image.asset(imagepath!),
-                      ),
-                    ],
+                  onTap: () {
+                    //Todo
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Image.asset(imagepath!),
+                        Text(name!,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("${price}",style: TextStyle(color: buttonsColor,fontWeight: FontWeight.bold,fontSize: 18),),
+                            if(price !="قريبا")
+                              Text("SAR",style: TextStyle(fontSize: 12),)
+                          ],
+                        )
+
+
+                      ],
+                    ),
                   ),
                 ),
               ),

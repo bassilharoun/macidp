@@ -65,12 +65,12 @@ class RunningView extends StatelessWidget {
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                          left: 100,
+                                          left: 130,
                                           right: 16,
                                           top: 16,
                                         ),
                                         child: Text(
-                                          "You're doing great!",
+                                          "Triptik is valid for 1 year !",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontFamily:
@@ -87,13 +87,13 @@ class RunningView extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                      left: 100,
+                                      left: 130,
                                       bottom: 12,
                                       top: 4,
                                       right: 16,
                                     ),
                                     child: Text(
-                                      "Keep it up\nand stick to your plan!",
+                                      "from the date of its issuance",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
@@ -112,12 +112,12 @@ class RunningView extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: -16,
-                        left: 0,
+                        top: -30,
+                        left: -20,
                         child: SizedBox(
-                          width: 110,
-                          height: 110,
-                          child: Image.asset("assets/fitness_app/runner.png"),
+                          width: 150,
+                          height: 150,
+                          child: Image.asset("assets/fitness_app/customsLogo.png"),
                         ),
                       )
                     ],

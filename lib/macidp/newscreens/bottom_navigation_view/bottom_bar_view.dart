@@ -71,13 +71,17 @@ class _BottomBarViewState extends State<BottomBarView>
                                   }),
                             ),
                             Expanded(
-                              child: TabIcons(
-                                  tabIconData: widget.tabIconsList?[1],
-                                  removeAllSelect: () {
-                                    setRemoveAllSelection(
-                                        widget.tabIconsList?[1]);
-                                    widget.changeIndex!(1);
-                                  }),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: TabIcons(
+                                    tabIconData: widget.tabIconsList?[1],
+                                    removeAllSelect: () {
+                                      setRemoveAllSelection(
+                                          widget.tabIconsList?[1]);
+                                      widget.changeIndex!(1);
+                                    }),
+                              ),
                             ),
                             SizedBox(
                               width: Tween<double>(begin: 0.0, end: 1.0)

@@ -7,12 +7,13 @@ import 'package:macidp/macidp/app_cubit/app_cubit.dart';
 import 'package:macidp/macidp/app_cubit/app_states.dart';
 import 'package:macidp/macidp/newscreens/fitness_app_theme.dart';
 import 'package:macidp/macidp/newscreens/license%20details/course_info_screen.dart';
-import 'package:macidp/macidp/newscreens/models/meals_list_data.dart';
+import 'package:macidp/macidp/newscreens/models/IDP_list_data.dart';
 import 'package:macidp/macidp/shared/components/components.dart';
 import 'package:macidp/main.dart';
 
-class MealsListView extends StatefulWidget {
-  const MealsListView(
+
+class IDPListView extends StatefulWidget {
+  const IDPListView(
       {Key? key, this.mainScreenAnimationController, this.mainScreenAnimation})
       : super(key: key);
 
@@ -20,19 +21,19 @@ class MealsListView extends StatefulWidget {
   final Animation<double>? mainScreenAnimation;
 
   @override
-  _MealsListViewState createState() => _MealsListViewState();
+  _IDPListViewState createState() => _IDPListViewState();
 }
 
-class _MealsListViewState extends State<MealsListView>
+class _IDPListViewState extends State<IDPListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
-  List<MealsListData> mealsListData = MealsListData.tabIconsList;
 
   @override
   void initState() {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
+
   }
 
   Future<bool> getData() async {
@@ -51,6 +52,34 @@ class _MealsListViewState extends State<MealsListView>
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state){},
       builder: (context, state){
+        List<IdpListData> idpListData = <IdpListData>[
+          IdpListData(
+            imagePath: 'assets/images/200.png',
+            titleTxt: '${AppCubit.get(context).products[6].name}',
+            kacl: "${AppCubit.get(context).products[6].price}",
+            Idp: <String>['53% Discount,','EXP : 2024-10-19'],
+            startColor: '#0072E7',
+            endColor: '#0A296D',
+          ),
+          IdpListData(
+            imagePath: 'assets/images/250.png',
+            titleTxt: '${AppCubit.get(context).products[5].name}',
+            kacl: '${AppCubit.get(context).products[5].price}',
+            Idp: <String>['57% Discount', 'EXP : 2026-10-19'],
+            startColor: '#FE95B6',
+            endColor: '#8201E9',
+          ),
+          IdpListData(
+            imagePath: 'assets/images/300.png',
+            titleTxt: '${AppCubit.get(context).products[4].name}',
+            kacl: '${AppCubit.get(context).products[4].price}',
+            Idp: <String>['55% Discount,', 'EXP : 2025-10-19'],
+            startColor: '#FFFF8A',
+            endColor: '#D89501',
+          ),
+
+        ];
+
         return AnimatedBuilder(
           animation: widget.mainScreenAnimationController!,
           builder: (BuildContext context, Widget? child) {
@@ -60,16 +89,16 @@ class _MealsListViewState extends State<MealsListView>
                 transform: Matrix4.translationValues(
                     0.0, 30 * (1.0 - widget.mainScreenAnimation!.value), 0.0),
                 child: Container(
-                  height: 216,
+                  height: 260,
                   width: double.infinity,
                   child: ListView.builder(
                     padding: const EdgeInsets.only(
                         top: 0, bottom: 0, right: 16, left: 16),
-                    itemCount: mealsListData.length,
+                    itemCount: idpListData.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       final int count =
-                      mealsListData.length > 10 ? 10 : mealsListData.length;
+                      idpListData.length > 10 ? 10 : idpListData.length;
                       final Animation<double> animation =
                       Tween<double>(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
@@ -94,7 +123,7 @@ class _MealsListViewState extends State<MealsListView>
                           });
                         },
                         child: CarsView(
-                          mealsListData: mealsListData[index],
+                          IDPListData: idpListData[index],
                           animation: animation,
                           animationController: animationController!,
                         ),
@@ -113,10 +142,10 @@ class _MealsListViewState extends State<MealsListView>
 
 class CarsView extends StatelessWidget {
   const CarsView(
-      {Key? key, this.mealsListData, this.animationController, this.animation})
+      {Key? key, this.IDPListData, this.animationController, this.animation})
       : super(key: key);
 
-  final MealsListData? mealsListData;
+  final IdpListData? IDPListData;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -141,15 +170,15 @@ class CarsView extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              color: HexColor(mealsListData!.endColor)
+                              color: HexColor(IDPListData!.endColor)
                                   .withOpacity(0.6),
                               offset: const Offset(1.1, 4.0),
                               blurRadius: 8.0),
                         ],
                         gradient: LinearGradient(
                           colors: <HexColor>[
-                            HexColor(mealsListData!.startColor),
-                            HexColor(mealsListData!.endColor),
+                            HexColor(IDPListData!.startColor),
+                            HexColor(IDPListData!.endColor),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
@@ -169,7 +198,7 @@ class CarsView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              mealsListData!.titleTxt,
+                              IDPListData!.titleTxt,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: FitnessAppTheme.fontName,
@@ -188,7 +217,7 @@ class CarsView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      mealsListData!.meals!.join('\n'),
+                                      IDPListData!.Idp!.join('\n'),
                                       style: TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
@@ -206,7 +235,7 @@ class CarsView extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: <Widget>[
                                       Text(
-                                        mealsListData!.kacl.toString(),
+                                        IDPListData!.kacl.toString(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: FitnessAppTheme.fontName,
@@ -256,7 +285,7 @@ class CarsView extends StatelessWidget {
                     child: SizedBox(
                       width: 100,
                       height: 100,
-                      child: Image.asset(mealsListData!.imagePath),
+                      child: Image.asset(IDPListData!.imagePath),
                     ),
                   )
                 ],

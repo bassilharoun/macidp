@@ -75,41 +75,12 @@ class MediterranesnDietView extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            defaultTextButton(function: (){}, text: "Order IDP Now", color: HexColor('#87A0E5'))
+                                            Text("Why order Idp ?", style: TextStyle(color: HexColor('#87A0E5'),fontSize: 18,fontWeight: FontWeight.bold))
                                           ],
                                         ),
                                       )
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Container(
-                                        height: 48,
-                                        width: 2,
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F56E98')
-                                              .withOpacity(0.5),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4.0)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            defaultTextButton(function: (){}, text: "Order Triptik", color: HexColor('#F56E98'))
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  )
                                 ],
                               ),
                             ),
